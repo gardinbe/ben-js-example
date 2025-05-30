@@ -1,4 +1,4 @@
-import { def, type Route } from 'benjs-router';
+import { def, type Route } from '@ben-js/router';
 
 export const routes: Route[] = [
   {

@@ -1,7 +1,6 @@
 {
   "private": true,
-  "name": "benjs-demo",
-  "description": "A demo of benjs",
+  "name": "ben-js-router-demo",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -11,8 +10,8 @@
     "format": "eslint . --fix && prettier --write ."
   },
   "dependencies": {
-    "benjs": "file:../benjs",
-    "benjs-router": "file:../benjs-router",
+    "ben-js": "^0.0.0",
+    "@ben-js/router": "^0.0.0",
     "tailwindcss": "^4.1.6"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
-import { html } from 'benjs';
-import { Link } from 'benjs-router';
+import { html } from 'ben-js';
+import { Link } from '@ben-js/router';
 
 const PokemonListPage = () => {
   return html`

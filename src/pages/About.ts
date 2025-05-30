@@ -1,4 +1,4 @@
-import { html } from 'benjs';
+import { html } from 'ben-js';
 
 const AboutPage = () => {
   return html`

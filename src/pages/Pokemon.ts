@@ -1,7 +1,7 @@
-import type { RouteContext } from 'benjs-router';
+import type { RouteContext } from '@ben-js/router';
 import type { Pokemon } from '~/lib/types/pokeapi';
 import type { Result } from '~/lib/types/result';
-import { html } from 'benjs';
+import { html } from 'ben-js';
 import { fetchJson } from '~/lib/utils/fetch-json';
 import { capitalize } from '~/lib/utils/capitalize';
 
