@@ -1,12 +1,22 @@
-import type { Route } from 'benjs-router';
+import { def, type Route } from 'benjs-router';
 
 export const routes: Route[] = [
   {
     path: '',
-    component: async () => (await import('~/pages/Home')).default()
+    component: def(import('~/pages/Home'))
   },
   {
     path: 'about',
-    component: async () => (await import('~/pages/About')).default()
+    component: def(import('~/pages/About'))
+  },
+  {
+    path: 'pokemon',
+    component: def(import('~/pages/PokemonList')),
+    children: [
+      {
+        path: '[slug]',
+        component: def(import('~/pages/Pokemon'))
+      }
+    ]
   }
 ];

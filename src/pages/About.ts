@@ -1,10 +1,11 @@
 import { html } from 'benjs';
-import { Link } from 'benjs-router';
 
 const AboutPage = () => {
   return html`
-    <h1>About</h1>
-    ${Link({ href: '/', content: 'Home' })}
+    <div class="std-container">
+      <h1>About</h1>
+      <p>This is the about page!</p>
+    </div>
   `;
 };
 
