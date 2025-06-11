@@ -5,18 +5,24 @@ const PokemonListPage = () => {
   return html`
     <div class="std-container">
       <h1>Pokemon</h1>
-      ${Link({
-        href: '/pokemon/charmander',
-        content: 'Charmander'
-      })}
-      ${Link({
-        href: '/pokemon/squirtle',
-        content: 'Squirtle'
-      })}
-      ${Link({
-        href: '/pokemon/bulbasaur',
-        content: 'Bulbasaur'
-      })}
+      ${Link(
+        {
+          href: '/pokemon/charmander'
+        },
+        'Charmander'
+      )}
+      ${Link(
+        {
+          href: '/pokemon/squirtle'
+        },
+        'Squirtle'
+      )}
+      ${Link(
+        {
+          href: '/pokemon/bulbasaur'
+        },
+        'Bulbasaur'
+      )}
     </div>
   `;
 };

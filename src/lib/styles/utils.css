@@ -1,10 +1,4 @@
 @layer utilities {
-  .unstyled-list {
-    @apply space-y-0
-		pl-0
-		list-none;
-  }
-
   .std-container {
     @apply container
 		mx-auto
