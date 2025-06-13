@@ -1,5 +1,5 @@
 import { cn, derived, html } from 'ben-js';
-import { currentPath, Link } from '@ben-js/router';
+import { isActive, Link } from '@ben-js/router';
 
 type LinkItem = {
   text: string;
@@ -28,7 +28,10 @@ export const Nav = () => {
         ${links.map((link) =>
           Link(
             {
-              class: cn('unstyled-link px-4 py-3 hover:text-green-400 hover:bg-gray-900', derived(() => link.href === currentPath.value ? 'text-green-400 bg-gray-900' : null)),
+              class: cn(
+                'unstyled-link px-4 py-3 hover:text-green-400 hover:bg-gray-900',
+                derived(() => isActive(link.href) && 'text-green-400 bg-gray-900')
+              ),
               href: link.href
             },
             link.text
