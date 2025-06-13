@@ -18,6 +18,14 @@ const links: LinkItem[] = [
   {
     text: 'Pokemon',
     href: '/pokemon'
+  },
+  {
+    text: 'Calculator',
+    href: '/calculator'
+  },
+  {
+    text: 'Todo List',
+    href: '/todo-list'
   }
 ];
 

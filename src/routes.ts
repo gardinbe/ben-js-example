@@ -11,12 +11,20 @@ export const routes: Route[] = [
   },
   {
     path: 'pokemon',
-    component: def(() => import('~/pages/PokemonList')),
+    component: def(() => import('~/pages/Pokemon')),
     children: [
       {
         path: '[slug]',
-        component: def(() => import('~/pages/Pokemon'))
+        component: def(() => import('~/pages/Pokemon/[slug]'))
       }
     ]
+  },
+  {
+    path: 'calculator',
+    component: def(() => import('~/pages/Calculator'))
+  },
+  {
+    path: 'todo-list',
+    component: def(() => import('~/pages/TodoList'))
   }
 ];
