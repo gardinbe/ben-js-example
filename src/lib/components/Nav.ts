@@ -1,5 +1,26 @@
-import { cn, derived, html } from 'ben-js';
+import { cn, derived, component, html } from 'ben-js';
 import { isActive, Link } from '@ben-js/router';
+
+export const Nav = component(() => {
+  return html`
+    <nav class="bg-gray-950">
+      <menu class="flex">
+        ${links.map((link) =>
+          Link(
+            {
+              class: cn(
+                'unstyled-link px-4 py-3 hover:text-green-400 hover:bg-gray-900',
+                derived(() => isActive(link.href) && 'text-green-400 bg-gray-900')
+              ),
+              href: link.href
+            },
+            link.text
+          )
+        )}
+      </menu>
+    </nav>
+  `;
+});
 
 type LinkItem = {
   text: string;
@@ -28,24 +49,3 @@ const links: LinkItem[] = [
     href: '/todo-list'
   }
 ];
-
-export const Nav = () => {
-  return html`
-    <nav class="bg-gray-950">
-      <menu class="flex">
-        ${links.map((link) =>
-          Link(
-            {
-              class: cn(
-                'unstyled-link px-4 py-3 hover:text-green-400 hover:bg-gray-900',
-                derived(() => isActive(link.href) && 'text-green-400 bg-gray-900')
-              ),
-              href: link.href
-            },
-            link.text
-          )
-        )}
-      </menu>
-    </nav>
-  `;
-};

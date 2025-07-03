@@ -1,18 +1,8 @@
-import { type MaybeReactiveObject, html, isReactive, ref } from 'ben-js';
+import { component, html, ref } from 'ben-js';
 
-export type BtnProps = MaybeReactiveObject<{
-  variant: 'primary' | 'secondary';
-  type?: 'button' | 'submit' | 'reset';
-  onclick: (ev: MouseEvent) => void;
-}>;
-
-export const Btn = (props: BtnProps, slot: unknown) => {
+export const Btn = component<Props>((props, slot) => {
   const btn = ref();
-
-  btn.on('click', (ev) => {
-    const onclick = isReactive(props.onclick) ? props.onclick.value : props.onclick;
-    onclick(ev);
-  });
+  btn.on('click', props.onclick.value);
 
   return html`
     <button
@@ -23,4 +13,10 @@ export const Btn = (props: BtnProps, slot: unknown) => {
       ${slot}
     </button>
   `;
+});
+
+type Props = {
+  variant: 'primary' | 'secondary';
+  type?: 'button' | 'submit' | 'reset';
+  onclick: (ev: MouseEvent) => void;
 };

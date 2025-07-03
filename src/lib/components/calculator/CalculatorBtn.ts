@@ -1,26 +1,17 @@
-import { type MaybeReactiveObject, html, isReactive, ref, derived } from 'ben-js';
+import { html, ref, derived, component } from 'ben-js';
 
-export type CalculatorBtnProps = MaybeReactiveObject<{
-  type: 'number' | 'operation' | 'equals';
-  onclick: () => void;
-}>;
-
-export const CalculatorBtn = (props: CalculatorBtnProps, slot: unknown) => {
+export const CalculatorBtn = component<Props>((props, slot) => {
   const btn = ref();
 
-  btn.on('click', () => {
-    const onclick = isReactive(props.onclick) ? props.onclick.value : props.onclick;
-    onclick();
-  });
+  btn.on('click', props.onclick.value);
 
-  const colorClass = derived(() => {
-    const type = isReactive(props.type) ? props.type.value : props.type;
-    return type === 'equals'
+  const colorClass = derived(() =>
+    props.type.value === 'equals'
       ? 'bg-blue-800 hover:bg-blue-700 active:bg-blue-600'
-      : type === 'operation'
+      : props.type.value === 'operation'
         ? 'bg-orange-800 hover:bg-orange-700 active:bg-orange-600'
-        : 'bg-gray-800 hover:bg-gray-700 active:bg-gray-600';
-  });
+        : 'bg-gray-800 hover:bg-gray-700 active:bg-gray-600'
+  );
 
   return html`
     <button
@@ -30,4 +21,9 @@ export const CalculatorBtn = (props: CalculatorBtnProps, slot: unknown) => {
       ${slot}
     </button>
   `;
+});
+
+export type Props = {
+  type: 'number' | 'operation' | 'equals';
+  onclick: () => void;
 };

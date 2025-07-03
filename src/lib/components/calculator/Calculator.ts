@@ -1,11 +1,7 @@
-import { html, reactive } from 'ben-js';
+import { component, html, reactive } from 'ben-js';
 import { CalculatorBtn } from '~/lib/components/calculator/CalculatorBtn';
 
-type Operation = (prev: number, next: number) => number;
-
-const EmptyDisplay = '-';
-
-export const Calculator = () => {
+export const Calculator = component(() => {
   const prev = reactive(0);
   const next = reactive(0);
   const awaitingInput = reactive(true);
@@ -226,4 +222,8 @@ export const Calculator = () => {
       </div>
     </div>
   `;
-};
+});
+
+type Operation = (prev: number, next: number) => number;
+
+const EmptyDisplay = '-';

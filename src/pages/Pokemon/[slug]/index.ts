@@ -1,11 +1,11 @@
-import type { RouteContext } from '@ben-js/router';
+import { route } from '@ben-js/router';
 import type { Pokemon } from '~/lib/types/pokeapi';
 import type { Result } from '~/lib/types/result';
 import { html } from 'ben-js';
 import { fetchJson } from '~/lib/utils/fetch-json';
 import { capitalize } from '~/lib/utils/capitalize';
 
-const PokemonPage = async (ctx: RouteContext) => {
+const PokemonPage = route(async (ctx) => {
   if (!ctx.slug) {
     return html`
       <div class="std-container">
@@ -34,7 +34,7 @@ const PokemonPage = async (ctx: RouteContext) => {
       />
     </div>
   `;
-};
+});
 
 export default PokemonPage;
 
