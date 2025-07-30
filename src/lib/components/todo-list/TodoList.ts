@@ -1,21 +1,21 @@
-import { derived, Dynamic, html, reactive } from 'ben-js';
+import { derived, Dynamic, component, html, reactive } from 'ben-js';
 import { type Todo, TodoItem } from './TodoItem';
 import { Btn } from '~/lib/components/Btn';
 
-export const TodoList = () => {
+export const TodoList = component(() => {
   const todos = reactive(load());
 
   /**
-   * Adds a new todo to the list.
+   * Adds a new item to the list.
    */
   const add = (todo: Todo) => {
     todos.value = [...todos.value, todo];
   };
 
   /**
-   * Removes the last todo from the list.
+   * Removes the last item from the list.
    */
-  const removeLast = () => {
+  const pop = () => {
     todos.value = todos.value.slice(0, -1);
   };
 
@@ -45,7 +45,7 @@ export const TodoList = () => {
     )}
     ${Btn(
       {
-        onclick: removeLast,
+        onclick: pop,
         variant: 'primary'
       },
       'Remove last'
@@ -68,7 +68,7 @@ export const TodoList = () => {
       'Load preset'
     )}
   `;
-};
+});
 
 /**
  * Loads todos from local storage.
