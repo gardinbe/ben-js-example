@@ -1,4 +1,4 @@
-import { Async, html, type Component } from 'ben-js';
+import { Async, component, html } from 'ben-js';
 import { Router, setRoutes } from '@ben-js/router';
 import { routes } from '~/routes';
 import { Footer } from '~/lib/components/Footer';
@@ -6,7 +6,7 @@ import { Nav } from '~/lib/components/Nav';
 
 setRoutes(routes);
 
-export const App = (): Component => {
+export const App = component(() => {
   // prettier-ignore
   return html`
     <header>
@@ -19,4 +19,4 @@ export const App = (): Component => {
       ${Footer()}
     </footer>
   `;
-};
+});
