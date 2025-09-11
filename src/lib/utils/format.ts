@@ -1,21 +1,18 @@
 /**
  * Returns a date converted to a formatted string.
  * @param date - Date to format.
- * @returns Formatted date.
+ * @returns Formatted date, or null if the date is invalid.
  */
-export const formatDate: {
-  (date: string): string | null;
-  (date: Date): string | null;
-} = (arg) => {
-  const date = typeof arg === 'string' ? new Date(arg) : arg;
+export const formatDate = (date: Date | string): null | string => {
+  const parsedDate = typeof date === 'string' ? new Date(date) : date;
 
-  if (isNaN(date.getTime())) {
+  if (isNaN(parsedDate.getTime())) {
     return null;
   }
 
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
+  return parsedDate.toLocaleDateString('en-US', {
+    day: 'numeric',
     month: 'short',
-    day: 'numeric'
+    year: 'numeric',
   });
 };

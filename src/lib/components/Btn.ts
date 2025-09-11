@@ -1,9 +1,9 @@
 import { component, html, ref } from 'ben-js';
 
 export type BtnProps = {
-  variant: 'primary' | 'secondary';
-  type?: 'button' | 'submit' | 'reset';
   onclick: (ev: MouseEvent) => void;
+  type?: 'button' | 'reset' | 'submit';
+  variant: 'primary' | 'secondary';
 };
 
 export const Btn = component<BtnProps>((props, slot) => {

@@ -1,4 +1,5 @@
 import { component, html, reactive } from 'ben-js';
+
 import { CalculatorBtn } from '~/lib/components/calculator/CalculatorBtn';
 
 export const Calculator = component(() => {
@@ -7,12 +8,12 @@ export const Calculator = component(() => {
   const awaitingInput = reactive(true);
   const display = reactive(EmptyDisplay);
 
-  let currentOperation: Operation | null = null;
+  let currentOperation: null | Operation = null;
 
   /**
    * Executes the current operation.
    */
-  const exec = () => currentOperation?.(prev.value, next.value) ?? next.value;
+  const exec = (): number => currentOperation?.(prev.value, next.value) ?? next.value;
 
   /**
    * Completes the previous operation and loads a new one.
@@ -68,156 +69,156 @@ export const Calculator = component(() => {
       <div class="flex-1 grid grid-cols-4 gap-2 sm:auto-rows-[--spacing(12)]">
         ${CalculatorBtn(
           {
-            type: 'number',
             onclick: () => {
               append('7');
-            }
+            },
+            type: 'number',
           },
-          '7'
+          '7',
         )}
         ${CalculatorBtn(
           {
-            type: 'number',
             onclick: () => {
               append('8');
-            }
+            },
+            type: 'number',
           },
-          '8'
+          '8',
         )}
         ${CalculatorBtn(
           {
-            type: 'number',
             onclick: () => {
               append('9');
-            }
+            },
+            type: 'number',
           },
-          '9'
+          '9',
         )}
         ${CalculatorBtn(
           {
-            type: 'operation',
             onclick: () => {
               load((prev, next) => prev / next);
-            }
+            },
+            type: 'operation',
           },
-          '/'
+          '/',
         )}
         ${CalculatorBtn(
           {
-            type: 'number',
             onclick: () => {
               append('4');
-            }
+            },
+            type: 'number',
           },
-          '4'
+          '4',
         )}
         ${CalculatorBtn(
           {
-            type: 'number',
             onclick: () => {
               append('5');
-            }
+            },
+            type: 'number',
           },
-          '5'
+          '5',
         )}
         ${CalculatorBtn(
           {
-            type: 'number',
             onclick: () => {
               append('6');
-            }
+            },
+            type: 'number',
           },
-          '6'
+          '6',
         )}
         ${CalculatorBtn(
           {
-            type: 'operation',
             onclick: () => {
               load((prev, next) => prev * next);
-            }
+            },
+            type: 'operation',
           },
-          '*'
+          '*',
         )}
         ${CalculatorBtn(
           {
-            type: 'number',
             onclick: () => {
               append('1');
-            }
+            },
+            type: 'number',
           },
-          '1'
+          '1',
         )}
         ${CalculatorBtn(
           {
-            type: 'number',
             onclick: () => {
               append('2');
-            }
+            },
+            type: 'number',
           },
-          '2'
+          '2',
         )}
         ${CalculatorBtn(
           {
-            type: 'number',
             onclick: () => {
               append('3');
-            }
+            },
+            type: 'number',
           },
-          '3'
+          '3',
         )}
         ${CalculatorBtn(
           {
-            type: 'operation',
             onclick: () => {
               load((prev, next) => prev - next);
-            }
+            },
+            type: 'operation',
           },
-          '-'
+          '-',
         )}
         ${CalculatorBtn(
           {
-            type: 'number',
             onclick: () => {
               append('0');
-            }
+            },
+            type: 'number',
           },
-          '0'
+          '0',
         )}
         ${CalculatorBtn(
           {
-            type: 'number',
             onclick: () => {
               append('.');
-            }
+            },
+            type: 'number',
           },
-          '.'
+          '.',
         )}
         ${CalculatorBtn(
           {
-            type: 'operation',
             onclick: () => {
               reset();
-            }
+            },
+            type: 'operation',
           },
-          'C'
+          'C',
         )}
         ${CalculatorBtn(
           {
-            type: 'operation',
             onclick: () => {
               load((prev, next) => prev + next);
-            }
+            },
+            type: 'operation',
           },
-          '+'
+          '+',
         )}
         ${CalculatorBtn(
           {
-            type: 'equals',
             onclick: () => {
               finish();
-            }
+            },
+            type: 'equals',
           },
-          '='
+          '=',
         )}
       </div>
     </div>

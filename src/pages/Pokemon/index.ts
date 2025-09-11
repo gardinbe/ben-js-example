@@ -1,5 +1,6 @@
 import { go, type Route } from '@ben-js/router';
 import { html, ref } from 'ben-js';
+
 import { Btn } from '~/lib/components/Btn';
 
 const PokemonListPage: Route = () => {
@@ -16,14 +17,14 @@ const PokemonListPage: Route = () => {
         />
         ${Btn(
           {
-            variant: 'primary',
-            type: 'submit',
             onclick: (ev) => {
               ev.preventDefault();
               go(`/pokemon/${input.el.value?.value}`);
-            }
+            },
+            type: 'submit',
+            variant: 'primary',
           },
-          'Search'
+          'Search',
         )}
       </form>
     </div>

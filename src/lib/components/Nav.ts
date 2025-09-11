@@ -1,5 +1,5 @@
-import { cn, derived, component, html } from 'ben-js';
 import { isActive, Link } from '@ben-js/router';
+import { cn, component, derived, html } from 'ben-js';
 
 export const Nav = component(() => {
   return html`
@@ -10,12 +10,12 @@ export const Nav = component(() => {
             {
               class: cn(
                 'unstyled-link px-4 py-3 hover:text-green-400 hover:bg-gray-900',
-                derived(() => isActive(link.href) && 'text-green-400 bg-gray-900')
+                derived(() => isActive(link.href) && 'text-green-400 bg-gray-900'),
               ),
-              href: link.href
+              href: link.href,
             },
-            link.text
-          )
+            link.text,
+          ),
         )}
       </menu>
     </nav>
@@ -23,29 +23,29 @@ export const Nav = component(() => {
 });
 
 type NavLink = {
-  text: string;
   href: string;
+  text: string;
 };
 
 const NavLinks: NavLink[] = [
   {
+    href: '/',
     text: 'Home',
-    href: '/'
   },
   {
+    href: '/about',
     text: 'About',
-    href: '/about'
   },
   {
+    href: '/pokemon',
     text: 'Pokemon',
-    href: '/pokemon'
   },
   {
+    href: '/calculator',
     text: 'Calculator',
-    href: '/calculator'
   },
   {
+    href: '/todo-list',
     text: 'Todo List',
-    href: '/todo-list'
-  }
+  },
 ];

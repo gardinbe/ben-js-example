@@ -1,5 +1,6 @@
 import { type Route } from '@ben-js/router';
 import { html } from 'ben-js';
+
 import { Calculator } from '~/lib/components/calculator/Calculator';
 
 const CalculatorPage: Route = () => {
