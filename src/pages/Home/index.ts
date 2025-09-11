@@ -1,7 +1,7 @@
-import { route } from '@ben-js/router';
+import { type Route } from '@ben-js/router';
 import { html } from 'ben-js';
 
-const HomePage = route(() => {
+const HomePage: Route = () => {
   return html`
     <div class="std-container">
       <h1>Home</h1>
@@ -28,6 +28,6 @@ const HomePage = route(() => {
       </p>
     </div>
   `;
-});
+};
 
 export default HomePage;

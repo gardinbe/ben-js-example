@@ -1,4 +1,4 @@
-import { derived, Dynamic, component, html, reactive } from 'ben-js';
+import { List, component, html, reactive } from 'ben-js';
 import { type Todo, TodoItem } from './TodoItem';
 import { Btn } from '~/lib/components/Btn';
 
@@ -19,14 +19,16 @@ export const TodoList = component(() => {
     todos.value = todos.value.slice(0, -1);
   };
 
-  return html`
-    ${Dynamic(
-      derived(() =>
-        todos.value.map((todo) => ({
-          key: todo.id,
-          component: TodoItem(todo)
-        }))
-      )
+  const logMessage = () => {
+    console.log('Hello world!');
+  };
+
+  const component = html`
+    ${List(() =>
+      todos.value.map((todo) => ({
+        key: todo.id,
+        component: TodoItem(todo)
+      }))
     )}
     ${Btn(
       {
@@ -68,6 +70,16 @@ export const TodoList = component(() => {
       'Load preset'
     )}
   `;
+
+  component.hooks.mounted(() => {
+    addEventListener('click', logMessage);
+  });
+
+  component.hooks.unmounted(() => {
+    removeEventListener('click', logMessage);
+  });
+
+  return component;
 });
 
 /**

@@ -1,11 +1,11 @@
-import { route } from '@ben-js/router';
+import { type Route } from '@ben-js/router';
 import type { Pokemon } from '~/lib/types/pokeapi';
 import type { Result } from '~/lib/types/result';
 import { html } from 'ben-js';
-import { fetchJson } from '~/lib/utils/fetch-json';
+import { refetch } from '~/lib/utils/refetch';
 import { capitalize } from '~/lib/utils/capitalize';
 
-const PokemonPage = route(async (ctx) => {
+const PokemonPage: Route = async (ctx) => {
   if (!ctx.slug) {
     return html`
       <div class="std-container">
@@ -34,7 +34,7 @@ const PokemonPage = route(async (ctx) => {
       />
     </div>
   `;
-});
+};
 
 export default PokemonPage;
 
@@ -45,4 +45,4 @@ export default PokemonPage;
  * @see https://pokeapi.co
  */
 const fetchPokemon = async (name: string): Promise<Result<Pokemon>> =>
-  fetchJson(`https://pokeapi.co/api/v2/pokemon/${name}`);
+  refetch(`https://pokeapi.co/api/v2/pokemon/${name}`);

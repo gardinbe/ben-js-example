@@ -10,12 +10,12 @@ export type Todo = {
   priority: number;
 };
 
-export const TodoItem = component((props: Todo) => {
+export const TodoItem = component<Todo>((props) => {
   return html`
     <div>
       <h3>${props.title}</h3>
       <div>${props.content}</div>
-      <time datetime="${props.date}">${derived(() => formatDate(props.date))}</time>
+      <time datetime="${props.date}">${derived(() => formatDate(props.date.value))}</time>
     </div>
   `;
 });
