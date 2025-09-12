@@ -2,9 +2,6 @@
   body {
     @apply flex
     flex-col
-    items-center
-    justify-center
-    p-4
     min-h-[100dvh]
     bg-gray-900
     text-white;
@@ -27,24 +24,10 @@
   blockquote,
   pre,
   table,
-  detail,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply last:mb-0;
-  }
-
-  p,
-  ul,
-  ol,
-  blockquote,
-  pre,
-  table,
-  details {
-    @apply mb-4;
+  details,
+  .std-codeblock {
+    @apply mb-4
+    last:mb-0;
   }
 
   ul,
@@ -69,7 +52,8 @@
   h6 {
     @apply font-bold
     mb-6
-    first:mt-0;
+    first:mt-0
+    last:mb-0;
   }
 
   h1 {
@@ -104,5 +88,9 @@
 
   h6 {
     @apply mt-6;
+  }
+
+  code {
+    @apply bg-gray-900;
   }
 }
