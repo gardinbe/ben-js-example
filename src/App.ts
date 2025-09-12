@@ -1,5 +1,5 @@
-import { Async, html, type Component } from 'benjs';
-import { Link, Router } from 'benjs-router';
+import { Async, html, type Component } from 'ben-js';
+import { Link, Router } from '@ben-js/router';
 import { routes } from '~/routes';
 
 export const App = (): Component => {
