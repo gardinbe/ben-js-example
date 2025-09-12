@@ -1,0 +1,12 @@
+@layer utilities {
+  .btn {
+    @apply px-3
+    py-1
+    font-bold
+    bg-gray-100
+    text-gray-900
+    cursor-pointer
+    hover:bg-gray-400
+    active:bg-gray-500;
+  }
+}
