@@ -8,8 +8,7 @@
     "build": "vite build",
     "dev": "vite --host",
     "preview": "vite preview",
-    "lint": "eslint . --fix",
-    "prettier": "prettier --write ."
+    "format": "eslint . --fix && prettier --write ."
   },
   "dependencies": {
     "benjs": "file:../benjs",
