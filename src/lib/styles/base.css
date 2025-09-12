@@ -93,4 +93,20 @@
   code {
     @apply bg-gray-900;
   }
+
+  .unstyled-list {
+    @apply space-y-0
+		pl-0
+		list-none;
+  }
+
+  .unstyled-link {
+    @apply underline-offset-auto
+    decoration-auto
+    hover:decoration-auto
+    hover:text-inherit
+    active:text-inherit
+    focus-visible:text-inherit
+    no-underline;
+  }
 }

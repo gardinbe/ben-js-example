@@ -10,8 +10,8 @@
     "format": "eslint . --fix && prettier --write ."
   },
   "dependencies": {
-    "ben-js": "^0.0.0",
-    "@ben-js/router": "^0.0.0",
+    "ben-js": "file:../ben-js/packages/ben-js",
+    "@ben-js/router": "file:../ben-js/packages/router",
     "tailwindcss": "^4.1.6"
   },
   "devDependencies": {
