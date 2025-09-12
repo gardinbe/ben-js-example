@@ -1,82 +1,106 @@
-import { List, component, html, reactive } from 'ben-js';
-import { type Todo, TodoItem } from './TodoItem';
+import { component, flatten, html, List, reactive } from 'ben-js';
+
 import { Btn } from '~/lib/components/Btn';
 
+import { type Todo, TodoItem } from './TodoItem';
+
 export const TodoList = component(() => {
-  const todos = reactive(load());
+  const todos = reactive(load().map(reactive));
+
+  const set = (newTodos: Todo[]): void => {
+    todos.value = newTodos.map(reactive);
+  };
 
   /**
    * Adds a new item to the list.
    */
-  const add = (todo: Todo) => {
-    todos.value = [...todos.value, todo];
+  const add = (newTodo: Todo): void => {
+    todos.value = [...todos.value, reactive(newTodo)];
   };
 
   /**
    * Removes the last item from the list.
    */
-  const pop = () => {
+  const pop = (): void => {
     todos.value = todos.value.slice(0, -1);
   };
 
-  const logMessage = () => {
+  const component = html`
+    <div class="flex flex-col gap-8">
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"
+      >
+        ${List(() =>
+          todos.value.map((todo) => ({
+            component: TodoItem({
+              onToggle: () => {
+                todo.value = {
+                  ...todo.value,
+                  completed: !todo.value.completed,
+                };
+              },
+              todo,
+            }),
+            key: todo.value.id,
+          })),
+        )}
+      </div>
+      <div class="flex gap-4">
+        ${Btn(
+          {
+            onclick: () => {
+              add({
+                completed: false,
+                content: prompt('Please enter the content') ?? '',
+                date: new Date().toISOString(),
+                id: todos.value.length + 1,
+                priority: 0,
+                title: prompt('Please enter the title') ?? '',
+              });
+            },
+            variant: 'primary',
+          },
+          'Add',
+        )}
+        ${Btn(
+          {
+            onclick: pop,
+            variant: 'primary',
+          },
+          'Remove last',
+        )}
+        ${Btn(
+          {
+            onclick: () => {
+              save(flatten(todos));
+            },
+            variant: 'primary',
+          },
+          'Save',
+        )}
+        ${Btn(
+          {
+            onclick: () => {
+              set(preset);
+            },
+            variant: 'primary',
+          },
+          'Load preset',
+        )}
+      </div>
+    </div>
+  `;
+
+  const logTestMessage = (): void => {
     console.log('Hello world!');
   };
 
-  const component = html`
-    ${List(() =>
-      todos.value.map((todo) => ({
-        key: todo.id,
-        component: TodoItem(todo)
-      }))
-    )}
-    ${Btn(
-      {
-        variant: 'primary',
-        onclick: () =>
-          add({
-            id: todos.value.length + 1,
-            title: prompt('Please enter the title') ?? '',
-            content: prompt('Please enter the content') ?? '',
-            completed: false,
-            date: new Date().toISOString(),
-            priority: 0
-          })
-      },
-      'Add'
-    )}
-    ${Btn(
-      {
-        onclick: pop,
-        variant: 'primary'
-      },
-      'Remove last'
-    )}
-    ${Btn(
-      {
-        onclick: () => save(todos.value),
-        variant: 'primary'
-      },
-      'Save'
-    )}
-    ${Btn(
-      {
-        onclick: () => {
-          save(preset);
-          todos.value = load();
-        },
-        variant: 'primary'
-      },
-      'Load preset'
-    )}
-  `;
-
   component.hooks.mounted(() => {
-    addEventListener('click', logMessage);
+    addEventListener('click', logTestMessage);
   });
 
   component.hooks.unmounted(() => {
-    removeEventListener('click', logMessage);
+    removeEventListener('click', logTestMessage);
   });
 
   return component;
@@ -85,7 +109,7 @@ export const TodoList = component(() => {
 /**
  * Loads todos from local storage.
  */
-const load = () => {
+const load = (): Todo[] => {
   const raw = localStorage.getItem('todos');
   return raw ? (JSON.parse(raw) as Todo[]) : [];
 };
@@ -93,81 +117,81 @@ const load = () => {
 /**
  * Saves todos to local storage.
  */
-const save = (todos: Todo[]) => {
+const save = (todos: Todo[]): void => {
   localStorage.setItem('todos', JSON.stringify(todos));
 };
 
 const preset: Todo[] = [
   {
-    id: 1,
-    title: 'Buy groceries',
+    completed: false,
     content: 'Milk, eggs, bread',
-    completed: false,
     date: new Date().toISOString(),
-    priority: 2
+    id: 1,
+    priority: 2,
+    title: 'Buy groceries',
   },
   {
-    id: 2,
-    title: 'Read a book',
+    completed: false,
     content: 'Read "The Lord of the Rings" by J. R. R. Tolkien',
-    completed: false,
     date: new Date().toISOString(),
-    priority: 1
+    id: 2,
+    priority: 1,
+    title: 'Read a book',
   },
   {
-    id: 3,
-    title: 'Go for a walk',
+    completed: false,
     content: 'Visit the dog park and take a walk',
-    completed: false,
     date: new Date().toISOString(),
-    priority: 0
+    id: 3,
+    priority: 0,
+    title: 'Go for a walk',
   },
   {
-    id: 4,
-    title: 'Clean the house',
+    completed: false,
     content: 'Clean the kitchen, bathroom, and bedroom',
-    completed: false,
     date: new Date().toISOString(),
-    priority: 1
+    id: 4,
+    priority: 1,
+    title: 'Clean the house',
   },
   {
-    id: 5,
-    title: 'Watch a movie',
+    completed: false,
     content: 'Watch "The Shawshank Redemption" by Frank Darabont',
-    completed: false,
     date: new Date().toISOString(),
-    priority: 0
+    id: 5,
+    priority: 0,
+    title: 'Watch a movie',
   },
   {
-    id: 6,
-    title: 'Do some coding',
+    completed: false,
     content: 'Learn TypeScript and React',
-    completed: false,
     date: new Date().toISOString(),
-    priority: 2
+    id: 6,
+    priority: 2,
+    title: 'Do some coding',
   },
   {
-    id: 7,
-    title: 'Go to the gym',
+    completed: false,
     content: 'Go to the gym and do some exercise',
-    completed: false,
     date: new Date().toISOString(),
-    priority: 0
+    id: 7,
+    priority: 0,
+    title: 'Go to the gym',
   },
   {
-    id: 8,
-    title: 'Go for a run',
+    completed: false,
     content: 'Go for a run and get some exercise',
-    completed: false,
     date: new Date().toISOString(),
-    priority: 1
+    id: 8,
+    priority: 1,
+    title: 'Go for a run',
   },
   {
-    id: 9,
-    title: 'Go for a hike',
-    content: 'Go for a hike and get some exercise',
     completed: false,
+    content: 'Go for a hike and get some exercise',
     date: new Date().toISOString(),
-    priority: 2
-  }
+    id: 9,
+    priority: 2,
+    title: 'Go for a hike',
+  },
 ];

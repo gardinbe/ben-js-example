@@ -1,24 +1,16 @@
-export type Pokemon = {
-  id: number;
-  name: string;
-  base_experience: number;
-  height: number;
-  weight: number;
-  is_default: boolean;
-  order: number;
-  abilities: Ability[];
-  forms: NamedAPIResource[];
-  species: NamedAPIResource;
-  sprites: Sprites;
-  stats: Stat[];
-  types: Type[];
-  moves: Move[];
-};
-
 export type Ability = {
+  ability: NamedAPIResource;
   is_hidden: boolean;
   slot: number;
-  ability: NamedAPIResource;
+};
+
+export type Move = {
+  move: NamedAPIResource;
+  version_group_details: {
+    level_learned_at: number;
+    move_learn_method: NamedAPIResource;
+    version_group: NamedAPIResource;
+  }[];
 };
 
 export type NamedAPIResource = {
@@ -26,19 +18,36 @@ export type NamedAPIResource = {
   url: string;
 };
 
+export type Pokemon = {
+  abilities: Ability[];
+  base_experience: number;
+  forms: NamedAPIResource[];
+  height: number;
+  id: number;
+  is_default: boolean;
+  moves: Move[];
+  name: string;
+  order: number;
+  species: NamedAPIResource;
+  sprites: Sprites;
+  stats: Stat[];
+  types: Type[];
+  weight: number;
+};
+
 export type Sprites = {
-  front_default: string | null;
-  front_shiny: string | null;
-  front_female: string | null;
-  front_shiny_female: string | null;
-  back_default: string | null;
-  back_shiny: string | null;
-  back_female: string | null;
-  back_shiny_female: string | null;
+  back_default: null | string;
+  back_female: null | string;
+  back_shiny: null | string;
+  back_shiny_female: null | string;
+  front_default: null | string;
+  front_female: null | string;
+  front_shiny: null | string;
+  front_shiny_female: null | string;
   other?: {
     [key: string]: {
-      front_default: string | null;
-      front_shiny: string | null;
+      front_default: null | string;
+      front_shiny: null | string;
     };
   };
 };
@@ -52,13 +61,4 @@ export type Stat = {
 export type Type = {
   slot: number;
   type: NamedAPIResource;
-};
-
-export type Move = {
-  move: NamedAPIResource;
-  version_group_details: {
-    level_learned_at: number;
-    move_learn_method: NamedAPIResource;
-    version_group: NamedAPIResource;
-  }[];
 };

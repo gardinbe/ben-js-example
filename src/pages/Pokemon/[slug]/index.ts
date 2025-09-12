@@ -1,9 +1,10 @@
 import { type Route } from '@ben-js/router';
-import type { Pokemon } from '~/lib/types/pokeapi';
-import type { Result } from '~/lib/types/result';
 import { html } from 'ben-js';
-import { refetch } from '~/lib/utils/refetch';
+
+import { type Pokemon } from '~/lib/types/pokeapi';
+import { type Result } from '~/lib/types/result';
 import { capitalize } from '~/lib/utils/capitalize';
+import { refetch } from '~/lib/utils/refetch';
 
 const PokemonPage: Route = async (ctx) => {
   if (!ctx.slug) {

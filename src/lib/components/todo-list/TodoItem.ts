@@ -1,21 +1,37 @@
-import { html, component, derived } from 'ben-js';
+import { cn, component, derived, html, ref } from 'ben-js';
+
 import { formatDate } from '~/lib/utils/format';
 
 export type Todo = {
-  id: number;
-  title: string;
-  content: string;
   completed: boolean;
+  content: string;
   date: string;
+  id: number;
   priority: number;
+  title: string;
 };
 
-export const TodoItem = component<Todo>((props) => {
+export type TodoItemProps = {
+  onToggle: () => void;
+  todo: Todo;
+};
+
+export const TodoItem = component<TodoItemProps>((props) => {
+  const todo = props.todo;
+  const btn = ref();
+  btn.on('click', props.onToggle.value);
+
   return html`
-    <div>
-      <h3>${props.title}</h3>
-      <div>${props.content}</div>
-      <time datetime="${props.date}">${derived(() => formatDate(props.date.value))}</time>
-    </div>
+    <button
+      ref="${btn}"
+      class="${cn(
+        'text-start flex flex-col p-4 bg-slate-700 hover:bg-slate-600 cursor-pointer',
+        derived(() => todo.value.completed && 'line-through'),
+      )}"
+    >
+      <div class="text-2xl font-bold">${todo.value.title}</div>
+      <div>${todo.value.content}</div>
+      <time datetime="${todo.value.date}">${derived(() => formatDate(todo.value.date))}</time>
+    </button>
   `;
 });
