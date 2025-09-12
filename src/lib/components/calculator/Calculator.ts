@@ -69,7 +69,7 @@ export const Calculator = component(() => {
       <div class="flex-1 grid grid-cols-4 gap-2 sm:auto-rows-[--spacing(12)]">
         ${CalculatorBtn(
           {
-            onclick: () => {
+            onClick: () => {
               append('7');
             },
             type: 'number',
@@ -78,7 +78,7 @@ export const Calculator = component(() => {
         )}
         ${CalculatorBtn(
           {
-            onclick: () => {
+            onClick: () => {
               append('8');
             },
             type: 'number',
@@ -87,7 +87,7 @@ export const Calculator = component(() => {
         )}
         ${CalculatorBtn(
           {
-            onclick: () => {
+            onClick: () => {
               append('9');
             },
             type: 'number',
@@ -96,7 +96,7 @@ export const Calculator = component(() => {
         )}
         ${CalculatorBtn(
           {
-            onclick: () => {
+            onClick: () => {
               load((prev, next) => prev / next);
             },
             type: 'operation',
@@ -105,7 +105,7 @@ export const Calculator = component(() => {
         )}
         ${CalculatorBtn(
           {
-            onclick: () => {
+            onClick: () => {
               append('4');
             },
             type: 'number',
@@ -114,7 +114,7 @@ export const Calculator = component(() => {
         )}
         ${CalculatorBtn(
           {
-            onclick: () => {
+            onClick: () => {
               append('5');
             },
             type: 'number',
@@ -123,7 +123,7 @@ export const Calculator = component(() => {
         )}
         ${CalculatorBtn(
           {
-            onclick: () => {
+            onClick: () => {
               append('6');
             },
             type: 'number',
@@ -132,7 +132,7 @@ export const Calculator = component(() => {
         )}
         ${CalculatorBtn(
           {
-            onclick: () => {
+            onClick: () => {
               load((prev, next) => prev * next);
             },
             type: 'operation',
@@ -141,7 +141,7 @@ export const Calculator = component(() => {
         )}
         ${CalculatorBtn(
           {
-            onclick: () => {
+            onClick: () => {
               append('1');
             },
             type: 'number',
@@ -150,7 +150,7 @@ export const Calculator = component(() => {
         )}
         ${CalculatorBtn(
           {
-            onclick: () => {
+            onClick: () => {
               append('2');
             },
             type: 'number',
@@ -159,7 +159,7 @@ export const Calculator = component(() => {
         )}
         ${CalculatorBtn(
           {
-            onclick: () => {
+            onClick: () => {
               append('3');
             },
             type: 'number',
@@ -168,7 +168,7 @@ export const Calculator = component(() => {
         )}
         ${CalculatorBtn(
           {
-            onclick: () => {
+            onClick: () => {
               load((prev, next) => prev - next);
             },
             type: 'operation',
@@ -177,7 +177,7 @@ export const Calculator = component(() => {
         )}
         ${CalculatorBtn(
           {
-            onclick: () => {
+            onClick: () => {
               append('0');
             },
             type: 'number',
@@ -186,7 +186,7 @@ export const Calculator = component(() => {
         )}
         ${CalculatorBtn(
           {
-            onclick: () => {
+            onClick: () => {
               append('.');
             },
             type: 'number',
@@ -195,7 +195,7 @@ export const Calculator = component(() => {
         )}
         ${CalculatorBtn(
           {
-            onclick: () => {
+            onClick: () => {
               reset();
             },
             type: 'operation',
@@ -204,7 +204,7 @@ export const Calculator = component(() => {
         )}
         ${CalculatorBtn(
           {
-            onclick: () => {
+            onClick: () => {
               load((prev, next) => prev + next);
             },
             type: 'operation',
@@ -213,7 +213,7 @@ export const Calculator = component(() => {
         )}
         ${CalculatorBtn(
           {
-            onclick: () => {
+            onClick: () => {
               finish();
             },
             type: 'equals',

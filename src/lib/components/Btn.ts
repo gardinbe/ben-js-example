@@ -1,14 +1,14 @@
 import { component, html, ref } from 'ben-js';
 
 export type BtnProps = {
-  onclick: (ev: MouseEvent) => void;
+  onClick: (ev: MouseEvent) => void;
   type?: 'button' | 'reset' | 'submit';
   variant: 'primary' | 'secondary';
 };
 
-export const Btn = component<BtnProps>((props, slot) => {
+export const Btn = component<BtnProps>((props, ...slots) => {
   const btn = ref();
-  btn.on('click', props.onclick.value);
+  btn.on('click', props.onClick.value);
 
   return html`
     <button
@@ -16,7 +16,7 @@ export const Btn = component<BtnProps>((props, slot) => {
       type="${props.type}"
       class="std-btn"
     >
-      ${slot}
+      ${slots}
     </button>
   `;
 });

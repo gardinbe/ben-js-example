@@ -48,7 +48,7 @@ export const TodoList = component(() => {
       <div class="flex gap-4">
         ${Btn(
           {
-            onclick: () => {
+            onClick: () => {
               add({
                 completed: false,
                 content: prompt('Please enter the content') ?? '',
@@ -64,14 +64,14 @@ export const TodoList = component(() => {
         )}
         ${Btn(
           {
-            onclick: pop,
+            onClick: pop,
             variant: 'primary',
           },
           'Remove last',
         )}
         ${Btn(
           {
-            onclick: () => {
+            onClick: () => {
               save(flatten(todos));
             },
             variant: 'primary',
@@ -80,7 +80,7 @@ export const TodoList = component(() => {
         )}
         ${Btn(
           {
-            onclick: () => {
+            onClick: () => {
               set(preset);
             },
             variant: 'primary',
