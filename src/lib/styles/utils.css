@@ -13,7 +13,8 @@
     text-gray-900
     cursor-pointer
     hover:bg-gray-400
-    active:bg-gray-500;
+    active:bg-gray-500
+    select-none;
   }
 
   .std-codeblock {

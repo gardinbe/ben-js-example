@@ -5,7 +5,7 @@ export const Nav = component(() => {
   return html`
     <nav class="bg-gray-950">
       <menu class="flex">
-        ${links.map((link) =>
+        ${NavLinks.map((link) =>
           Link(
             {
               class: cn(
@@ -22,12 +22,12 @@ export const Nav = component(() => {
   `;
 });
 
-type LinkItem = {
+type NavLink = {
   text: string;
   href: string;
 };
 
-const links: LinkItem[] = [
+const NavLinks: NavLink[] = [
   {
     text: 'Home',
     href: '/'

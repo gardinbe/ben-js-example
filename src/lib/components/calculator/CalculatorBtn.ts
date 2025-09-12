@@ -5,15 +5,15 @@ export type CalculatorBtnProps = {
   onclick: () => void;
 };
 
-export const CalculatorBtn = component((props: CalculatorBtnProps, slot) => {
+export const CalculatorBtn = component<CalculatorBtnProps>((props, slot) => {
   const btn = ref();
 
-  btn.on('click', props.onclick);
+  btn.on('click', props.onclick.value);
 
   const colorClass = derived(() =>
-    props.type === 'equals'
+    props.type.value === 'equals'
       ? 'bg-blue-800 hover:bg-blue-700 active:bg-blue-600'
-      : props.type === 'operation'
+      : props.type.value === 'operation'
         ? 'bg-orange-800 hover:bg-orange-700 active:bg-orange-600'
         : 'bg-gray-800 hover:bg-gray-700 active:bg-gray-600'
   );

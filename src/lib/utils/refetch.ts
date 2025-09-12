@@ -2,11 +2,11 @@ import type { POJO } from '~/lib/types/pojo';
 import type { Result } from '~/lib/types/result';
 
 /**
- * Sends a GET request to the provided API and returns the JSON response.
+ * Sends a GET request to the provided API and returns a result
  * @param url - URL of the API.
- * @returns JSON response result.
+ * @returns Result.
  */
-export const fetchJson = async <T extends POJO>(url: string): Promise<Result<T>> => {
+export const refetch = async <T extends POJO>(url: string): Promise<Result<T>> => {
   try {
     const res = await fetch(url);
 

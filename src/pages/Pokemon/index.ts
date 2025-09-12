@@ -1,8 +1,8 @@
-import { go, route } from '@ben-js/router';
+import { go, type Route } from '@ben-js/router';
 import { html, ref } from 'ben-js';
 import { Btn } from '~/lib/components/Btn';
 
-const PokemonListPage = route(() => {
+const PokemonListPage: Route = () => {
   const input = ref<HTMLInputElement>();
 
   return html`
@@ -28,6 +28,6 @@ const PokemonListPage = route(() => {
       </form>
     </div>
   `;
-});
+};
 
 export default PokemonListPage;
