@@ -17,7 +17,7 @@ const PokemonListPage: Route = () => {
         />
         ${Btn(
           {
-            onclick: (ev) => {
+            onClick: (ev) => {
               ev.preventDefault();
               go(`/pokemon/${input.el.value?.value}`);
             },

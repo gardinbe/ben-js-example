@@ -1,13 +1,13 @@
 import { cn, component, derived, html, ref } from 'ben-js';
 
 export type CalculatorBtnProps = {
-  onclick: () => void;
+  onClick: () => void;
   type: 'equals' | 'number' | 'operation';
 };
 
-export const CalculatorBtn = component<CalculatorBtnProps>((props, slot) => {
+export const CalculatorBtn = component<CalculatorBtnProps>((props, ...slots) => {
   const btn = ref();
-  btn.on('click', props.onclick.value);
+  btn.on('click', props.onClick.value);
 
   return html`
     <button
@@ -23,7 +23,7 @@ export const CalculatorBtn = component<CalculatorBtnProps>((props, slot) => {
         ),
       )}"
     >
-      ${slot}
+      ${slots}
     </button>
   `;
 });

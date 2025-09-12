@@ -27,4 +27,8 @@ export const routes: RouteDefinition[] = [
     component: define(() => import('~/pages/TodoList')),
     path: 'todo-list',
   },
+  {
+    component: define(() => import('~/pages/TestForm')),
+    path: 'test-form',
+  },
 ];

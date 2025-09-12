@@ -24,4 +24,12 @@
     rounded
     whitespace-pre-wrap;
   }
+
+  .std-input {
+    @apply px-3
+    py-1
+    font-bold
+    bg-gray-100
+    text-gray-900;
+  }
 }
