@@ -1,5 +1,5 @@
-import { html } from 'ben-js';
+import { component, html } from 'ben-js';
 
-export const Footer = () => {
+export const Footer = component(() => {
   return html`<div class="px-4 py-2 bg-gray-950">Footer</div>`;
-};
+});

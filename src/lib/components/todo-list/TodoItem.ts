@@ -1,4 +1,4 @@
-import { ref, html, reactive } from 'ben-js';
+import { html, component, derived } from 'ben-js';
 import { formatDate } from '~/lib/utils/format';
 
 export type Todo = {
@@ -10,25 +10,12 @@ export type Todo = {
   priority: number;
 };
 
-export type TodoItemProps = Todo;
-
-export const TodoItem = (props: TodoItemProps) => {
-  const completed = reactive(false);
-  const div = ref();
-
-  div.on('click', () => {
-    completed.value = !completed.value;
-    props.completed = completed.value;
-  });
-
+export const TodoItem = component((props: Todo) => {
   return html`
-    <div
-      ref="${div}"
-      data-completed="${completed}"
-    >
+    <div>
       <h3>${props.title}</h3>
       <div>${props.content}</div>
-      <time datetime="${props.date}">${formatDate(props.date)}</time>
+      <time datetime="${props.date}">${derived(() => formatDate(props.date))}</time>
     </div>
   `;
-};
+});
