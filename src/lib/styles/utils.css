@@ -1,8 +1,8 @@
 @layer utilities {
   .std-container {
     @apply container
-		mx-auto
-		px-4;
+    mx-auto
+    px-4;
   }
 
   .std-btn {
@@ -18,9 +18,9 @@
 
   .std-codeblock {
     @apply block
-		px-3
-		py-2
-		rounded
-		whitespace-pre-wrap;
+    px-3
+    py-2
+    rounded
+    whitespace-pre-wrap;
   }
 }
