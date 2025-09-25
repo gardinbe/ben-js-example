@@ -1,21 +1,17 @@
-import { component, flatten, html, List, reactive } from 'ben-js';
+import { type Component, html, List, reactive } from 'ben-js';
 
 import { Btn } from '~/lib/components/Btn';
 
 import { type Todo, TodoItem } from './TodoItem';
 
-export const TodoList = component(() => {
-  const todos = reactive(load().map(reactive));
-
-  const set = (newTodos: Todo[]): void => {
-    todos.value = newTodos.map(reactive);
-  };
+export const TodoList = (): Component => {
+  const todos = reactive(load());
 
   /**
    * Adds a new item to the list.
    */
   const add = (newTodo: Todo): void => {
-    todos.value = [...todos.value, reactive(newTodo)];
+    todos.value = [...todos.value, newTodo];
   };
 
   /**
@@ -32,16 +28,8 @@ export const TodoList = component(() => {
       >
         ${List(() =>
           todos.value.map((todo) => ({
-            component: TodoItem({
-              onToggle: () => {
-                todo.value = {
-                  ...todo.value,
-                  completed: !todo.value.completed,
-                };
-              },
-              todo,
-            }),
-            key: todo.value.id,
+            component: TodoItem(todo),
+            key: todo.id,
           })),
         )}
       </div>
@@ -72,7 +60,7 @@ export const TodoList = component(() => {
         ${Btn(
           {
             onClick: () => {
-              save(flatten(todos));
+              save(todos.value);
             },
             variant: 'primary',
           },
@@ -81,7 +69,7 @@ export const TodoList = component(() => {
         ${Btn(
           {
             onClick: () => {
-              set(preset);
+              todos.value = Preset;
             },
             variant: 'primary',
           },
@@ -91,20 +79,22 @@ export const TodoList = component(() => {
     </div>
   `;
 
-  const logTestMessage = (): void => {
+  const { mounted, unmounted } = component.hooks;
+
+  const logMessage = (): void => {
     console.log('Hello world!');
   };
 
-  component.hooks.mounted(() => {
-    addEventListener('click', logTestMessage);
+  mounted(() => {
+    addEventListener('click', logMessage);
   });
 
-  component.hooks.unmounted(() => {
-    removeEventListener('click', logTestMessage);
+  unmounted(() => {
+    removeEventListener('click', logMessage);
   });
 
   return component;
-});
+};
 
 /**
  * Loads todos from local storage.
@@ -121,7 +111,7 @@ const save = (todos: Todo[]): void => {
   localStorage.setItem('todos', JSON.stringify(todos));
 };
 
-const preset: Todo[] = [
+const Preset: Todo[] = [
   {
     completed: false,
     content: 'Milk, eggs, bread',

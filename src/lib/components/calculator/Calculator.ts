@@ -1,8 +1,8 @@
-import { component, html, reactive } from 'ben-js';
+import { type Component, html, reactive } from 'ben-js';
 
 import { CalculatorBtn } from '~/lib/components/calculator/CalculatorBtn';
 
-export const Calculator = component(() => {
+export const Calculator = (): Component => {
   const prev = reactive(0);
   const next = reactive(0);
   const awaitingInput = reactive(true);
@@ -223,7 +223,7 @@ export const Calculator = component(() => {
       </div>
     </div>
   `;
-});
+};
 
 type Operation = (prev: number, next: number) => number;
 

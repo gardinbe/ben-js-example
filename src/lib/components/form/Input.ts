@@ -1,20 +1,22 @@
-import { attributes, component, html, ref } from 'ben-js';
+import { attributes, type Component, html, normalize, type Props, ref } from 'ben-js';
 
-export type InputProps = {
+export type InputProps = Props<{
   autocomplete?: string;
   label: string;
   name: string;
   onUpdate: (value: string) => void;
   placeholder: string;
   type?: string;
-};
+}>;
 
-export const Input = component<InputProps>((props) => {
+export const Input = (props: InputProps): Component => {
+  const { onUpdate } = normalize(props);
+
   const input = ref<HTMLInputElement>();
   const uuid = crypto.randomUUID();
 
   input.on('input', () => {
-    props.onUpdate.value(input.el.value!.value);
+    onUpdate.value(input.el.value!.value);
   });
 
   return html` <div class="flex flex-col gap-2">
@@ -31,4 +33,4 @@ export const Input = component<InputProps>((props) => {
       })}
     />
   </div>`;
-});
+};

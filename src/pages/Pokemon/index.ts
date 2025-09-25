@@ -1,15 +1,26 @@
 import { go, type Route } from '@ben-js/router';
-import { html, ref } from 'ben-js';
+import { html, reactive, ref } from 'ben-js';
 
 import { Btn } from '~/lib/components/Btn';
 
 const PokemonListPage: Route = () => {
+  const form = ref<HTMLFormElement>();
   const input = ref<HTMLInputElement>();
+  const pokemon = reactive('');
+
+  input.on('input', () => {
+    pokemon.value = input.el.value!.value;
+  });
+
+  form.on('submit', (ev) => {
+    ev.preventDefault();
+    go(`/pokemon/${pokemon.value}`);
+  });
 
   return html`
     <div class="std-container">
       <h1>Pokemon</h1>
-      <form>
+      <form ref="${form}">
         <input
           ref="${input}"
           type="text"
@@ -17,10 +28,6 @@ const PokemonListPage: Route = () => {
         />
         ${Btn(
           {
-            onClick: (ev) => {
-              ev.preventDefault();
-              go(`/pokemon/${input.el.value?.value}`);
-            },
             type: 'submit',
             variant: 'primary',
           },

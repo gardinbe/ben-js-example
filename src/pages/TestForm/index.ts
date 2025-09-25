@@ -20,8 +20,10 @@ const StepFormPage: Route = () => {
     ${FormContainer(
       Form(
         {
-          onSubmit: () => {
+          onSubmit: (ev) => {
+            ev.preventDefault();
             console.log('submit');
+            console.log(data.value);
           },
         },
         Input({
@@ -58,16 +60,13 @@ const StepFormPage: Route = () => {
           ],
           placeholder: 'Select gender',
         }),
-      ),
-      Btn(
-        {
-          onClick: () => {
-            console.log(data.value);
+        Btn(
+          {
+            type: 'submit',
+            variant: 'primary',
           },
-          type: 'submit',
-          variant: 'primary',
-        },
-        'Submit',
+          'Submit',
+        ),
       ),
     )}
     </div>

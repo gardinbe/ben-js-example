@@ -1,4 +1,4 @@
-import { cn, component, derived, html, ref } from 'ben-js';
+import { type Component, derived, html, normalize, type Props } from 'ben-js';
 
 import { formatDate } from '~/lib/utils/format';
 
@@ -11,27 +11,15 @@ export type Todo = {
   title: string;
 };
 
-export type TodoItemProps = {
-  onToggle: () => void;
-  todo: Todo;
-};
+export type TodoItemProps = Props<Todo>;
 
-export const TodoItem = component<TodoItemProps>((props) => {
-  const todo = props.todo;
-  const btn = ref();
-  btn.on('click', props.onToggle.value);
-
+export const TodoItem = (props: TodoItemProps): Component => {
+  const { content, date, title } = normalize(props);
   return html`
-    <button
-      ref="${btn}"
-      class="${cn(
-        'text-start flex flex-col p-4 bg-slate-700 hover:bg-slate-600 cursor-pointer',
-        derived(() => todo.value.completed && 'line-through'),
-      )}"
-    >
-      <div class="text-2xl font-bold">${todo.value.title}</div>
-      <div>${todo.value.content}</div>
-      <time datetime="${todo.value.date}">${derived(() => formatDate(todo.value.date))}</time>
-    </button>
+    <div>
+      <h3>${title}</h3>
+      <div>${content}</div>
+      <time datetime="${date}">${derived(() => formatDate(date.value))}</time>
+    </div>
   `;
-});
+};

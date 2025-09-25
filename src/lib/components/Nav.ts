@@ -1,33 +1,31 @@
 import { isActive, Link } from '@ben-js/router';
-import { cn, component, derived, html } from 'ben-js';
+import { cn, type Component, derived, html } from 'ben-js';
 
-export const Nav = component(() => {
-  return html`
-    <nav class="bg-gray-950">
-      <menu class="flex">
-        ${NavLinks.map((link) =>
-          Link(
-            {
-              class: cn(
-                'unstyled-link px-4 py-3 hover:text-green-400 hover:bg-gray-900',
-                derived(() => isActive(link.href) && 'text-green-400 bg-gray-900'),
-              ),
-              href: link.href,
-            },
-            link.text,
-          ),
-        )}
-      </menu>
-    </nav>
-  `;
-});
+export const Nav = (): Component => html`
+  <nav class="bg-gray-950">
+    <menu class="flex">
+      ${NavItems.map((item) =>
+        Link(
+          {
+            class: cn(
+              'unstyled-link px-4 py-3 hover:text-green-400 hover:bg-gray-900',
+              derived(() => isActive(item.href) && 'text-green-400 bg-gray-900'),
+            ),
+            href: item.href,
+          },
+          item.text,
+        ),
+      )}
+    </menu>
+  </nav>
+`;
 
-type NavLink = {
+type NavItem = {
   href: string;
   text: string;
 };
 
-const NavLinks: NavLink[] = [
+const NavItems: NavItem[] = [
   {
     href: '/',
     text: 'Home',
