@@ -1,18 +1,17 @@
 import { type Component, html, normalize, type Props, ref } from 'ben-js';
 
-export type BtnProps = Props<{
+export type BtnProps = {
   onClick?: (ev: MouseEvent) => void;
   type?: 'button' | 'reset' | 'submit';
-  variant: 'primary' | 'secondary';
-}>;
+};
 
-export const Btn = (props: BtnProps, slot: unknown): Component => {
+export const Btn = (props: Props<BtnProps>, slot: unknown): Component => {
   const { onClick, type } = normalize(props);
   const btn = ref();
 
-  if (onClick) {
-    btn.on('click', onClick.value);
-  }
+  btn.on('click', (ev) => {
+    onClick?.value?.(ev);
+  });
 
   return html`
     <button

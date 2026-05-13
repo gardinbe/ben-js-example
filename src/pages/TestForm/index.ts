@@ -1,4 +1,4 @@
-import type { Route } from '@ben-js/router';
+import type { RouteComponent } from '@ben-js/router';
 
 import { html, reactive } from 'ben-js';
 
@@ -8,7 +8,7 @@ import { FormContainer } from '~/lib/components/form/FormContainer';
 import { Input } from '~/lib/components/form/Input';
 import { Select } from '~/lib/components/form/Select';
 
-const StepFormPage: Route = () => {
+const StepFormPage: RouteComponent = () => {
   const data = reactive({
     email: '',
     firstName: '',
@@ -63,7 +63,6 @@ const StepFormPage: Route = () => {
         Btn(
           {
             type: 'submit',
-            variant: 'primary',
           },
           'Submit',
         ),

@@ -23,7 +23,6 @@ export default defineConfig(
           fixStyle: 'inline-type-imports',
         },
       ],
-      '@typescript-eslint/explicit-function-return-type': 'error',
       '@typescript-eslint/no-base-to-string': 'off',
       '@typescript-eslint/no-misused-promises': [
         'error',

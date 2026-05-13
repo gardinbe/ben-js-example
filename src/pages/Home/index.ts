@@ -1,7 +1,7 @@
-import { type Route } from '@ben-js/router';
+import { type RouteComponent } from '@ben-js/router';
 import { html } from 'ben-js';
 
-const HomePage: Route = () => html`
+const HomePage: RouteComponent = () => html`
   <div class="std-container">
     <h1>Home</h1>
     <p>

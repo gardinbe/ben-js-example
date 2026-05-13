@@ -1,8 +1,8 @@
-import { type Component, html, reactive } from 'ben-js';
+import { html, reactive } from 'ben-js';
 
 import { CalculatorBtn } from '~/lib/components/calculator/CalculatorBtn';
 
-export const Calculator = (): Component => {
+export const Calculator = () => {
   const prev = reactive(0);
   const next = reactive(0);
   const awaitingInput = reactive(true);

@@ -1,4 +1,4 @@
-import { type Route } from '@ben-js/router';
+import { type RouteComponent } from '@ben-js/router';
 import { html } from 'ben-js';
 
 import { type Pokemon } from '~/lib/types/pokeapi';
@@ -6,7 +6,7 @@ import { type Result } from '~/lib/types/result';
 import { capitalize } from '~/lib/utils/capitalize';
 import { refetch } from '~/lib/utils/refetch';
 
-const PokemonPage: Route = async (ctx) => {
+const PokemonPage: RouteComponent = async (ctx) => {
   if (!ctx.slug) {
     return html`
       <div class="std-container">

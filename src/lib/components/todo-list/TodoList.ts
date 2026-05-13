@@ -1,4 +1,4 @@
-import { type Component, html, List, reactive } from 'ben-js';
+import { AnonList, type Component, html, reactive } from 'ben-js';
 
 import { Btn } from '~/lib/components/Btn';
 
@@ -21,17 +21,16 @@ export const TodoList = (): Component => {
     todos.value = todos.value.slice(0, -1);
   };
 
-  const component = html`
+  const logMessage = (): void => {
+    console.log('Hello world!');
+  };
+
+  return html`
     <div class="flex flex-col gap-8">
       <div
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"
       >
-        ${List(() =>
-          todos.value.map((todo) => ({
-            component: TodoItem(todo),
-            key: todo.id,
-          })),
-        )}
+        ${AnonList(() => todos.value.map((todo) => TodoItem(todo)))}
       </div>
       <div class="flex gap-4">
         ${Btn(
@@ -46,14 +45,12 @@ export const TodoList = (): Component => {
                 title: prompt('Please enter the title') ?? '',
               });
             },
-            variant: 'primary',
           },
           'Add',
         )}
         ${Btn(
           {
             onClick: pop,
-            variant: 'primary',
           },
           'Remove last',
         )}
@@ -62,7 +59,6 @@ export const TodoList = (): Component => {
             onClick: () => {
               save(todos.value);
             },
-            variant: 'primary',
           },
           'Save',
         )}
@@ -71,29 +67,19 @@ export const TodoList = (): Component => {
             onClick: () => {
               todos.value = Preset;
             },
-            variant: 'primary',
           },
           'Load preset',
         )}
       </div>
     </div>
-  `;
-
-  const { mounted, unmounted } = component.hooks;
-
-  const logMessage = (): void => {
-    console.log('Hello world!');
-  };
-
-  mounted(() => {
-    addEventListener('click', logMessage);
+  `.hook({
+    connected: () => {
+      addEventListener('click', logMessage);
+    },
+    disconnected: () => {
+      removeEventListener('click', logMessage);
+    },
   });
-
-  unmounted(() => {
-    removeEventListener('click', logMessage);
-  });
-
-  return component;
 };
 
 /**

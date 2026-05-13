@@ -1,4 +1,4 @@
-import { attributes, type Component, html, List, normalize, type Props, ref } from 'ben-js';
+import { attrs, type Component, html, List, normalize, type Props, ref } from 'ben-js';
 
 export type SelectOption = {
   default?: boolean;
@@ -25,14 +25,14 @@ export const Select = (props: SelectProps): Component => {
   const uuid = crypto.randomUUID();
 
   select.on('input', () => {
-    onUpdate.value(select.el.value!.value);
+    onUpdate.value(select.el!.value);
   });
 
   return html` <div class="flex flex-col gap-2">
     <label for="${uuid}">${label}</label>
     <select
       ref=${select}
-      ${attributes({
+      ${attrs({
         autocomplete: autocomplete ?? 'off',
         class: 'std-input',
         id: uuid,
@@ -44,7 +44,7 @@ export const Select = (props: SelectProps): Component => {
       ${List(() =>
         options.value.map((option) => ({
           component: html`<option
-            ${attributes({
+            ${attrs({
               default: option.default,
               disabled: option.disabled,
               selected: option.selected,

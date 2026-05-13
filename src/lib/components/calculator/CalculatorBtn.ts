@@ -8,7 +8,10 @@ export type CalculatorBtnProps = Props<{
 export const CalculatorBtn = (props: CalculatorBtnProps, slot: unknown): Component => {
   const { onClick, type } = normalize(props);
   const btn = ref();
-  btn.on('click', onClick.value);
+
+  btn.on('click', () => {
+    onClick.value();
+  });
 
   return html`
     <button

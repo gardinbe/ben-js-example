@@ -6,9 +6,11 @@ export type FormProps = Props<{
 
 export const Form = (props: FormProps, ...slots: unknown[]): Component => {
   const { onSubmit } = normalize(props);
-
   const form = ref<HTMLFormElement>();
-  form.on('submit', onSubmit.value);
+
+  form.on('submit', (ev) => {
+    onSubmit.value(ev);
+  });
 
   return html`<form
     ref="${form}"

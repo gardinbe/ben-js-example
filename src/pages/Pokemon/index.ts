@@ -1,15 +1,15 @@
-import { go, type Route } from '@ben-js/router';
+import { go, type RouteComponent } from '@ben-js/router';
 import { html, reactive, ref } from 'ben-js';
 
 import { Btn } from '~/lib/components/Btn';
 
-const PokemonListPage: Route = () => {
+const PokemonListPage: RouteComponent = () => {
   const form = ref<HTMLFormElement>();
   const input = ref<HTMLInputElement>();
   const pokemon = reactive('');
 
   input.on('input', () => {
-    pokemon.value = input.el.value!.value;
+    pokemon.value = input.el!.value;
   });
 
   form.on('submit', (ev) => {
@@ -26,13 +26,7 @@ const PokemonListPage: Route = () => {
           type="text"
           placeholder="Pokemon name..."
         />
-        ${Btn(
-          {
-            type: 'submit',
-            variant: 'primary',
-          },
-          'Search',
-        )}
+        ${Btn({ type: 'submit' }, 'Search')}
       </form>
     </div>
   `;

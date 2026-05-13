@@ -1,4 +1,4 @@
-import { attributes, type Component, html, normalize, type Props, ref } from 'ben-js';
+import { attrs, type Component, html, normalize, type Props, ref } from 'ben-js';
 
 export type InputProps = Props<{
   autocomplete?: string;
@@ -16,14 +16,14 @@ export const Input = (props: InputProps): Component => {
   const uuid = crypto.randomUUID();
 
   input.on('input', () => {
-    onUpdate.value(input.el.value!.value);
+    onUpdate.value(input.el!.value);
   });
 
   return html` <div class="flex flex-col gap-2">
     <label for="${uuid}">${props.label}</label>
     <input
       ref=${input}
-      ${attributes({
+      ${attrs({
         autocomplete: props.autocomplete ?? 'off',
         class: 'std-input',
         id: uuid,
